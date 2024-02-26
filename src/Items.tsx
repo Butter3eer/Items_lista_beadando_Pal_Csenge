@@ -53,7 +53,7 @@ const Items: React.FC = () => {
         setChangingItemList(updatedList);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputSearching = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         setChangingItemList(itemList.filter(item => item.name.includes(value)));
     };
@@ -86,7 +86,7 @@ const Items: React.FC = () => {
                         <input
                             className="display"
                             type="text"
-                            onChange={handleInputChange}
+                            onChange={inputSearching}
                         />
                     </div>
                     <div className="items_list">
