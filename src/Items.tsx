@@ -30,13 +30,17 @@ const Items: React.FC = () => {
     };
 
     const newItem = (name: string, category: string) => {
-        if (!itemList.some(item => item.name === name)) {
-            const newItemList = [...itemList, new Item(name, category)];
-            setItemList(newItemList);
-            setCategoriesList(Array.from(new Set(newItemList.map(item => item.category))));
-            setChangingItemList(newItemList);
+        if (name === "" || category === "") {
+            window.alert("Mind a 2 mező kitöltése kötelező.");
         } else {
-            window.alert("Már létezik ilyen névvel item.");
+            if (!itemList.some(item => item.name === name)) {
+                const newItemList = [...itemList, new Item(name, category)];
+                setItemList(newItemList);
+                setCategoriesList(Array.from(new Set(newItemList.map(item => item.category))));
+                setChangingItemList(newItemList);
+            } else {
+                window.alert("Már létezik ilyen névvel item.");
+            }
         }
     };
 
