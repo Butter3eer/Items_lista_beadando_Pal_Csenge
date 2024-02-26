@@ -75,19 +75,18 @@ const Items: React.FC = () => {
                         <input className="display" type="text" onChange={(e) => setNewCategory(e.target.value)} />
                     </label>
                     <div className="buttons">
-                        <button onClick={() => newItem(newName, newCategory)}>Create</button>
-                        <button onClick={() => setNewState(false)}>Back</button>
+                        <button onClick={() => {newItem(newName, newCategory); setNewState(false);}}>Create</button>
                     </div>
                 </div>
             ) : (
                 <div className="mainForm">
                     <div className="buttons">
-                        <button onClick={() => setChangingItemList(itemList)}>All</button>
+                        {categoriesList.length > 0 ? (<button onClick={() => setChangingItemList(itemList)}>All</button>): null}
                         {categoriesList.map(createButton)}
                         <button onClick={() => setNewState(true)}>New</button>
                     </div>
                     <div className="input-group">
-                        <input
+                    <input
                             className="display"
                             type="text"
                             onChange={inputSearching}
