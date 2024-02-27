@@ -8,6 +8,7 @@ const Items: React.FC = () => {
     const [newState, setNewState] = useState<boolean>(false);
     const [newName, setNewName] = useState<string>("");
     const [newCategory, setNewCategory] = useState<string>("");
+    const [searchingWord, setSearchingWord] = useState<string>("");
 
     const [itemList, setItemList] = useState<Item[]>([
         new Item("Alma", "Gyümölcs"),
@@ -58,8 +59,7 @@ const Items: React.FC = () => {
     };
 
     const inputSearching = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        setChangingItemList(itemList.filter(item => item.name.includes(value)));
+        setSearchingWord(e.target.value);
     };
 
     return (
@@ -94,7 +94,7 @@ const Items: React.FC = () => {
                     </div>
                     <div className="items_list">
                         <ul>
-                            {changingItemList.map(item => (
+                            {changingItemList.filter(item => item.name.includes(searchingWord)).map( item => (
                                 <li key={item.name}>
                                     {item.name}
                                     {!item.deleteState ? (
